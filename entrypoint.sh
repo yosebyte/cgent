@@ -1,9 +1,12 @@
 #!/bin/sh
-UUID=$(uuidgen)
-cat <<EOF > /root/config.yml
+CONFIG_FILE="/root/config.yml"
+if [ ! -f "$CONFIG_FILE" ]; then
+    UUID=$(uuidgen)
+    cat <<EOF > "$CONFIG_FILE"
 client_secret: ${SECRET}
 server: ${SERVER}
 tls: ${TLS}
 uuid: ${UUID}
 EOF
-exec /cgent -c=/root/config.yml
+fi
+exec /cgent -c="$CONFIG_FILE"
