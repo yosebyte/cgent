@@ -11,5 +11,6 @@ ENV SECRET=default_secret \
     SERVER=default_server \
     TLS=false
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /root/cgent
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
