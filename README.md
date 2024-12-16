@@ -1,21 +1,36 @@
 ## Feature
 
-- Nezha-agent in container, for safer usage and limited access.
-- Nezha v1 supported, minimal config file can be auto-generated.
-- Based on Alpine, image size around 40MB, support amd64, arm64.
+- Nezha-agent in container, fully functional with restricted access for safer usage.
+- Nezha v1 supported, with minimal config file auto-generated and stored locally.
+- Based on Alpine, image size around 40MB, supports linux/amd64 and linux/arm64.
 
 ## Usage
 
-- Use `--net=host --cap-add=NET_RAW` to gain full access of ping and tcping.
 - Basic usage example as below: 
 
 ```
-podman run -d --name=cgent --restart=always --net=host --cap-add=NET_RAW -e SECRET=agentsecretkey -e SERVER=installhost -e TLS=true ghcr.io/yosebyte/cgent
+mkdir /root/cgent
+docker run -d -v=/root/cgent/:/ \
+    --name=cgent --restart=always --net=host --cap-add=NET_RAW \
+    -e SECRET=agentsecretkey -e SERVER=installhost -e TLS=true \
+    ghcr.io/yosebyte/cgent
+cat /root/cgent/config.yml
 ```
-- `agentsecretkey` and `installhost` can be found in nezha-dashboard's config.yml, and `-e TLS` should be the same as dash's config, default `TLS` is `false`.
-- Optional nezha-dashboard deployment: 
+
+- You shall store or backup `config.yal` before customizing or upgrading.
+- `UUID` varies each time a config file is generated, be sure to backup former `UUID` or `config.yml`.
+- `agentsecretkey`, `installhost` and `tls` settings can be found in nezha-dashboard's config file.
+- Default `TLS` env setting is `false`, which can be ignored if TLS is disabled by nezha-dashboard.
+
+## Optional
+- Optional nezha-dashboard deployment suggested:
+
 ```
 mkdir /root/nezha
-podman run -d -v=/root/nezha/:/dashboard/data/ --name=nezha --restart=always --net=host ghcr.io/nezhahq/nezha
+docker run -d -v=/root/nezha/:/dashboard/data/ \
+    --name=nezha --restart=always --net=host \
+    ghcr.io/nezhahq/nezha
 cat /root/nezha/config.yaml
 ```
+
+- You shall store or backup `config.yaml`, `sqlite.db` ,etc before customizing or upgrading. 
