@@ -1,9 +1,9 @@
 #!/bin/sh
 UUID=$(uuidgen)
-cat <<EOF > /root/config.yml
+cat <<EOF > /config.yml
 client_secret: ${SECRET}
 server: ${SERVER}
 tls: ${TLS}
 uuid: ${UUID}
 EOF
-exec /root/cgent
+exec /cgent
