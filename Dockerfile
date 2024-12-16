@@ -10,6 +10,6 @@ COPY --from=builder /root/agent/cmd/agent/agent /root/cgent
 ENV SECRET=default_secret \
     SERVER=default_server \
     TLS=false
-COPY entrypoint.sh /root/entrypoint.sh
-RUN chmod +x /root/entrypoint.sh
-ENTRYPOINT ["/root/entrypoint.sh"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
