@@ -10,7 +10,7 @@
 
 ```
 mkdir /root/cgent
-docker run -d -v=/root/cgent/:/root/ \
+docker run -d -v=/root/cgent/:/ \
     --name=cgent --restart=always --net=host --cap-add=NET_RAW \
     -e SECRET=agentsecretkey -e SERVER=installhost -e TLS=true \
     ghcr.io/yosebyte/cgent
