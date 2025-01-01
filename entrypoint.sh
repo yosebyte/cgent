@@ -4,7 +4,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
     UUID=$(uuidgen)
     cat <<EOF > "$CONFIG_FILE"
 client_secret: ${SECRET}
-server: ${SERVER}
+server: '${SERVER}'
 tls: ${TLS}
 uuid: ${UUID}
 EOF
