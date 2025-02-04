@@ -1,6 +1,7 @@
 FROM golang AS builder
 WORKDIR /root
 RUN git clone https://github.com/nezhahq/agent
+WORKDIR /root/agent
 RUN go generate ./...
 WORKDIR /root/agent/cmd/agent
 RUN env CGO_ENABLED=0 \
