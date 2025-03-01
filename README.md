@@ -1,8 +1,8 @@
 ## Feature
 
 - Nezha-agent in container, fully functional with restricted access for safer usage.
-- Nezha v1 supported, with minimal config file auto-generated and stored locally.
-- Based on Alpine, image size less than 50MB, supports linux/amd64 and linux/arm64.
+- Nezha v1 supported, with minimal config file auto-generated.
+- Based on Alpine, supports linux/amd64 and linux/arm64.
 
 ## Usage
 
