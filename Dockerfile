@@ -6,7 +6,7 @@ RUN go generate ./...
 WORKDIR /root/agent/cmd/agent
 RUN env CGO_ENABLED=0 \
     go build -v -trimpath -ldflags \
-    "-s -w -X github.com/nezhahq/agent/pkg/monitor.Version=1.9.4"
+    "-s -w -X github.com/nezhahq/agent/pkg/monitor.Version=1.9.5"
 FROM alpine
 RUN apk add --no-cache util-linux
 COPY --from=builder /root/agent/cmd/agent/agent /cgent
